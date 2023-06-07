@@ -47,7 +47,7 @@ void main(void)
 
 void reflect(void)
 {
-    Data = Reflectance_Read(500);
+    Data = Reflectance_Read(400);
     position = Reflectance_Position(Data);
     sum_b=0;
 
@@ -74,7 +74,7 @@ void reflect(void)
       //直线行走
       if(position==0)
       {
-          Motor_Forward(4000,4000);
+          Motor_Forward(L,R);
       }
       else if(position>=237)
       {
@@ -95,3 +95,79 @@ void reflect(void)
     }
     }
 }
+
+
+
+
+
+/*
+//直角弯右转
+void T_Right(void)
+{
+    uint8_t d;
+    d=Reflectance_Read(1000);
+    if(d==0xe0 || d==0xc0 || d==0xf0 || d==0xf8)
+    {
+        Motor_Right(9000,9000);
+    }
+}*/
+
+
+
+
+/*while(1)
+{
+   // # 读取红外传感器的数据
+ float   sensor_data =  Reflectance_Position(Reflectance_Read(500));
+
+   // # 计算当前位置偏差
+ float   error = target_position - sensor_data;//相对白线位置
+
+  //  # 计算PID控制量
+ float   proportional = Kp * error;
+    integral += Ki * error;
+ float   derivative = Kd * (error - previous_error);
+
+   // # 计算转向控制量
+ float   control_signal = proportional + integral + derivative;
+
+    //# 控制小车转向
+    if (control_signal > 0)
+    Motor_Left(L,R);
+    if (control_signal < 0)
+    Motor_Right(L,R);
+    else
+    Motor_Forward(L,R);
+
+    //# 更新上一次的偏差值
+    previous_error = error;
+}*/
+/*
+    //*float PID_Output(void);
+    float kp=0,ki=0,kd=100;  //PID更改
+    float PID_Output(void)
+    {
+    int position = Reflectance_Position(Reflectance_Read(50));
+    float error,last_error=0;    //此次和上次的误差
+    static float integral;    //积分累加项
+    float output;      //PID输出
+    if(position<0&&position>-64)    //
+     error = -1;
+    else if(position<-64&&position>-100)   //
+     error = -2;
+    else if(position<-100)   //
+     error = -3;
+    else if(position>0&&position<64)   //
+     error = 1;
+    else if(position>64&&position<100)   //
+     error = 2;
+    else if(position>100)   //
+     error = 3;
+    else
+     error = 0;
+    integral += error;
+    output = kp * error + ki * integral + kd * (error - last_error);
+    last_error = error;
+    return output;
+    }
+*/
