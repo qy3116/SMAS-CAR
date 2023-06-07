@@ -56,15 +56,15 @@ void reflect(void)
             b[i] = (~Data>>i)&0x01;
             sum_b += b[i];
           }
-    if(sum_b>=4){
+if(sum_b>=4){
         if(b[0]==1&&b[7]==1)
             {Motor_Stop();}
         else if(b[0]==1&&b[7]==0)
-        { Motor_Right(L,R);Clock_Delay1ms(600);}//右转弯
+        {Port5_Output(1); Motor_Right(L,R);Clock_Delay1ms(600);}//右转弯
         else if (b[0]==0&&b[7]==1)
-        { Motor_Left(L,R);Clock_Delay1ms(600);}//左转弯
+        { Port5_Output(1);Motor_Left(L,R);Clock_Delay1ms(600);}//左转弯
                     }
-    else{
+else{
     if(position==666)
     {
         Motor_Stop();
